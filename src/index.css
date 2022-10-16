@@ -16,8 +16,6 @@ button {
 	color: inherit;
 	-webkit-appearance: none;
 	appearance: none;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -28,8 +26,6 @@ body {
 	min-width: 230px;
 	max-width: 550px;
 	margin: 0 auto;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 	font-weight: 300;
 }
 
@@ -66,9 +62,7 @@ body {
 	font-weight: 100;
 	text-align: center;
 	color: rgba(175, 47, 47, 0.15);
-	-webkit-text-rendering: optimizeLegibility;
-	-moz-text-rendering: optimizeLegibility;
-	text-rendering: optimizeLegibility;
+
 }
 
 .new-todo,
@@ -321,8 +315,8 @@ body {
 	border-color: rgba(175, 47, 47, 0.2);
 }
 
-.clear-completed,
-html .clear-completed:active {
+.clear-completed
+ {
 	float: right;
 	position: relative;
 	line-height: 20px;
