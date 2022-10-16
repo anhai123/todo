@@ -107,9 +107,6 @@ function App() {
   };
 
   useEffect(() => {
-    // console.log(document.activeElement);
-  }, [document.activeElement]);
-  useEffect(() => {
     // console.log(inputEl.current);
     if (inputEl.current !== null) {
       inputEl.current.focus();
@@ -136,6 +133,7 @@ function App() {
                 if (todo.isComplete) {
                   return (
                     <li
+                      id={todo.id}
                       className={
                         todo.isEditing ? "completed editing" : "completed"
                       }
@@ -197,6 +195,7 @@ function App() {
               } else if (isActive && !todo.isComplete) {
                 return (
                   <li
+                    id={todo.id}
                     className={todo.isEditing ? "editing" : ""}
                     onDoubleClick={(event) => {
                       handelDoubleClickInput(todo);
@@ -225,6 +224,7 @@ function App() {
               } else if (isComplete && todo.isComplete) {
                 return (
                   <li
+                    id={todo.id}
                     className={
                       todo.isEditing ? "completed editing" : "completed"
                     }
