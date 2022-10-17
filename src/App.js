@@ -109,7 +109,12 @@ function App() {
     todoList[index].value = event.target.value;
     setTooList([...todoList]);
   };
-
+  const handleDestroyButton = (id) => {
+    const list = todoList.filter((todo) => {
+      return todo.id !== id;
+    });
+    setTooList([...list]);
+  };
   useEffect(() => {
     // console.log(inputEl.current);
     if (inputEl.current !== null) {
@@ -155,7 +160,10 @@ function App() {
                           checked
                         />
                         <label>{todo.value}</label>
-                        <button class="destroy"></button>
+                        <button
+                          onClick={() => handleDestroyButton(todo.id)}
+                          class="destroy"
+                        ></button>
                       </div>
                       <input
                         class="edit"
@@ -184,7 +192,10 @@ function App() {
                           type="checkbox"
                         />
                         <label>{todo.value}</label>
-                        <button class="destroy"></button>
+                        <button
+                          onClick={() => handleDestroyButton(todo.id)}
+                          class="destroy"
+                        ></button>
                       </div>
                       <input
                         class="edit"
@@ -214,7 +225,10 @@ function App() {
                         type="checkbox"
                       />
                       <label>{todo.value}</label>
-                      <button class="destroy"></button>
+                      <button
+                        onClick={() => handleDestroyButton(todo.id)}
+                        class="destroy"
+                      ></button>
                     </div>
                     <input
                       class="edit"
@@ -246,7 +260,10 @@ function App() {
                         checked="true"
                       />
                       <label>{todo.value}</label>
-                      <button class="destroy"></button>
+                      <button
+                        onClick={() => handleDestroyButton(todo.id)}
+                        class="destroy"
+                      ></button>
                     </div>
                     <input
                       class="edit"
