@@ -17,6 +17,9 @@ function App() {
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
+      if (event.target.value === "") {
+        return;
+      }
       var id = "id" + Math.random().toString(16).slice(2);
       setTooList([
         ...todoList,
@@ -27,6 +30,7 @@ function App() {
           isEditing: false,
         },
       ]);
+      event.target.value = "";
     }
   };
   const handleClickCheckbox = (ev, todo) => {
