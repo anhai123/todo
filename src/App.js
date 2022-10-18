@@ -316,13 +316,6 @@ function App() {
   const [isActive, setIsActive] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
 
-  var inputEl = useRef(null);
-
-  useEffect(() => {
-    if (inputEl.current !== null) {
-      inputEl.current.focus();
-    }
-  }, [todoList]);
   return (
     <section class="todoapp">
       <div>
