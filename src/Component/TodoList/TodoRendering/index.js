@@ -1,5 +1,5 @@
 import "./TodoRendering.css";
-import View from "./View";
+import View from "./View.js";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 function TodoRendering(props) {

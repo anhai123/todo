@@ -1,5 +1,5 @@
 import "./Footer.css";
-import Filter from "./Filter";
+import Filter from "./Filter.js";
 import { useCallback } from "react";
 function Footer(props) {
   const handleClickClearComplete = useCallback(() => {
