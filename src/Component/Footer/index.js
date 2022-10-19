@@ -1,13 +1,13 @@
 import "./Footer.css";
 import Filter from "./Filter";
-
+import { useCallback } from "react";
 function Footer(props) {
-  const handleClickClearComplete = () => {
+  const handleClickClearComplete = useCallback(() => {
     const todl = props.todoList.filter((todo) => {
       return todo.isComplete !== true;
     });
     props.setTooList(todl);
-  };
+  });
   return (
     <footer class="footer">
       <span class="todo-count">

@@ -1,5 +1,5 @@
 import "./Filter.css";
-import { useMemo } from "react";
+import { memo } from "react";
 function Filter(props) {
   return (
     <ul class="filters">
@@ -41,4 +41,4 @@ function Filter(props) {
     </ul>
   );
 }
-export default Filter;
+export default memo(Filter);

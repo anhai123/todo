@@ -1,7 +1,7 @@
 import "./header.css";
-
+import { useCallback } from "react";
 function Header(props) {
-  const handleKeyDown = (event) => {
+  const handleKeyDown = useCallback((event) => {
     if (event.key === "Enter") {
       if (event.target.value === "") {
         return;
@@ -18,7 +18,7 @@ function Header(props) {
       ]);
       event.target.value = "";
     }
-  };
+  });
 
   return (
     <header class="header">

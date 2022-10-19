@@ -1,6 +1,7 @@
 import "./toggle.css";
+import { useCallback } from "react";
 function Toggle(props) {
-  const handelLabelToggle = () => {
+  const handelLabelToggle = useCallback(() => {
     if (props.itemLeft === props.todoList.length) {
       for (var i = 0; i < props.todoList.length; i++) {
         props.todoList[i].isComplete = true;
@@ -17,7 +18,7 @@ function Toggle(props) {
       }
       props.setTooList([...props.todoList]);
     }
-  };
+  });
   return (
     <>
       <input id="toggle-all" class="toggle-all" type="checkbox" />

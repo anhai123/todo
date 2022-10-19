@@ -1,6 +1,7 @@
 import "./TodoRendering.css";
 import View from "./View";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+
 function TodoRendering(props) {
   var inputEl = useRef(null);
   useEffect(() => {
@@ -9,7 +10,7 @@ function TodoRendering(props) {
     }
   }, [props.todoList]);
 
-  const handelDoubleClickInput = (todo) => {
+  const handelDoubleClickInput = useCallback((todo) => {
     inputEl.current = document.getElementById(todo.id).lastChild;
     const index = props.todoList.findIndex((td) => {
       return td.id === todo.id;
@@ -22,22 +23,25 @@ function TodoRendering(props) {
       }
     }
     props.setTooList([...props.todoList]);
-  };
-  const handelBurInput = (e, id) => {
+  });
+
+  const handelBurInput = useCallback((e, id) => {
     const index = props.todoList.findIndex((td) => {
       return td.id === id;
     });
     props.todoList[index].isEditing = false;
     props.setTooList([...props.todoList]);
-  };
-  const handelEditChange = (event, id) => {
+  });
+
+  const handelEditChange = useCallback((event, id) => {
     const index = props.todoList.findIndex((td) => {
       return td.id === id;
     });
     props.todoList[index].value = event.target.value;
     props.setTooList([...props.todoList]);
-  };
-  let classNameLi = () => {
+  });
+
+  let classNameLi = useCallback(() => {
     if (props.complete) {
       if (props.todo.isEditing) {
         return "completed editing";
@@ -47,7 +51,8 @@ function TodoRendering(props) {
         return "editing";
       } else return "";
     }
-  };
+  });
+
   return (
     <li
       id={props.todo.id}
