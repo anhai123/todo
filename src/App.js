@@ -12,13 +12,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setTodoList } from "./feature/todoSlice";
 
 function App() {
-  const dispatcher = useDispatch();
-  const { todoList1 } = useSelector((state) => state.todo);
-  const [todoList, setTooList] = useState([]);
-  const [isAll, setIsAll] = useState(true);
-  const [isActive, setIsActive] = useState(false);
-  const [isComplete, setIsComplete] = useState(false);
-
   return (
     <section class="todoapp">
       <div>
@@ -29,16 +22,7 @@ function App() {
           <TodoList />
         </section>
 
-        <Footer
-          todoList={todoList}
-          setTooList={setTooList}
-          isAll={isAll}
-          isActive={isActive}
-          isComplete={isComplete}
-          setIsAll={setIsAll}
-          setIsActive={setIsActive}
-          setIsComplete={setIsComplete}
-        />
+        <Footer />
       </div>
     </section>
   );

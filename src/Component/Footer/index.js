@@ -1,16 +1,6 @@
 import "./Footer.css";
 import Filter from "./Filter.js";
 import { useCallback } from "react";
-
-// todoList={todoList}
-// setTooList={setTooList}
-// isAll={isAll}
-// isActive={isActive}
-// isComplete={isComplete}
-// setIsAll={setIsAll}
-// setIsActive={setIsActive}
-// setIsComplete={setIsComplete}
-
 import { useDispatch, useSelector } from "react-redux";
 import { setTodoList } from "../../feature/todoSlice";
 function Footer(props) {
