@@ -8,7 +8,12 @@ import Footer from "./Component/Footer";
 //cash fix: dung document de query DOM element xong roi dung useeffect de focus vao no. Nhuwng dung useRef trong element de set cho current thi chua dc do
 // van bi element la element cuoi cung
 
+import { useDispatch, useSelector } from "react-redux";
+import { setTodoList } from "./feature/todoSlice";
+
 function App() {
+  const dispatcher = useDispatch();
+  const { todoList1 } = useSelector((state) => state.todo);
   const [todoList, setTooList] = useState([]);
   const [isAll, setIsAll] = useState(true);
   const [isActive, setIsActive] = useState(false);
@@ -17,27 +22,11 @@ function App() {
   return (
     <section class="todoapp">
       <div>
-        <Header
-          itemLeft={todoList.filter((todo) => todo.isComplete === false).length}
-          todoList={todoList}
-          setTooList={setTooList}
-        />
+        <Header />
 
         <section class="main">
-          <Toggle
-            itemLeft={
-              todoList.filter((todo) => todo.isComplete === false).length
-            }
-            todoList={todoList}
-            setTooList={setTooList}
-          />
-          <TodoList
-            todoList={todoList}
-            setTooList={setTooList}
-            isAll={isAll}
-            isActive={isActive}
-            isComplete={isComplete}
-          />
+          <Toggle />
+          <TodoList />
         </section>
 
         <Footer

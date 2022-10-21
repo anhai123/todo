@@ -1,40 +1,50 @@
 import "./Filter.css";
 import { memo } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setTodoList,
+  setIsAll,
+  setIsActive,
+  setIsComplete,
+} from "../../../feature/todoSlice";
 function Filter(props) {
+  const { isAll, isActive, isComplete } = useSelector((state) => state.todo);
+  const dispatcher = useDispatch();
   return (
     <ul class="filters">
       <li
         onClick={() => {
-          props.setIsAll(true);
-          props.setIsActive(false);
-          props.setIsComplete(false);
+          dispatcher(setIsAll(true));
+          dispatcher(setIsActive(false));
+          dispatcher(setIsComplete(false));
         }}
       >
-        <a href="#" className={props.isAll ? "selected" : ""}>
+        <a href="#" className={isAll ? "selected" : ""}>
           All
         </a>
       </li>
       <span> </span>
       <li
         onClick={() => {
-          props.setIsAll(false);
-          props.setIsActive(true);
-          props.setIsComplete(false);
+          dispatcher(setIsAll(false));
+          dispatcher(setIsActive(true));
+          dispatcher(setIsComplete(false));
         }}
       >
-        <a href="#" className={props.isActive ? "selected" : ""}>
+        <a href="#" className={isActive ? "selected" : ""}>
           Active
         </a>
       </li>
       <span> </span>
       <li
         onClick={() => {
-          props.setIsAll(false);
-          props.setIsActive(false);
-          props.setIsComplete(true);
+          dispatcher(setIsAll(false));
+          dispatcher(setIsActive(false));
+          dispatcher(setIsComplete(true));
         }}
       >
-        <a href="#" className={props.isComplete ? "selected" : ""}>
+        <a href="#" className={isComplete ? "selected" : ""}>
           Completed
         </a>
       </li>

@@ -1,44 +1,51 @@
 import "./TodoRendering.css";
 import View from "./View.js";
 import { useCallback, useEffect, useRef, useState } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
+import { setTodoList } from "../../../feature/todoSlice";
 function TodoRendering(props) {
+  const { todoList1 } = useSelector((state) => state.todo);
+  const dispatcher = useDispatch();
   var inputEl = useRef(null);
   useEffect(() => {
     if (inputEl.current !== null) {
       inputEl.current.focus();
     }
-  }, [props.todoList]);
+  }, [todoList1]);
 
   const handelDoubleClickInput = useCallback((todo) => {
     inputEl.current = document.getElementById(todo.id).lastChild;
-    const index = props.todoList.findIndex((td) => {
+    const index = todoList1.findIndex((td) => {
       return td.id === todo.id;
     });
-    for (var i = 0; i < props.todoList.length; i++) {
+
+    const td2 = [...todoList1];
+    for (var i = 0; i < todoList1.length; i++) {
       if (i === index) {
-        props.todoList[i].isEditing = true;
+        td2[i] = { ...td2[i], isEditing: true };
       } else {
-        props.todoList[i].isEditing = false;
+        td2[i] = { ...td2[i], isEditing: false };
       }
     }
-    props.setTooList([...props.todoList]);
+    dispatcher(setTodoList([...td2]));
   });
 
   const handelBurInput = useCallback((e, id) => {
-    const index = props.todoList.findIndex((td) => {
+    const td2 = [...todoList1];
+    const index = todoList1.findIndex((td) => {
       return td.id === id;
     });
-    props.todoList[index].isEditing = false;
-    props.setTooList([...props.todoList]);
+    td2[index] = { ...td2[index], isEditing: false };
+    dispatcher(setTodoList([...td2]));
   });
 
   const handelEditChange = useCallback((event, id) => {
-    const index = props.todoList.findIndex((td) => {
+    const td2 = [...todoList1];
+    const index = todoList1.findIndex((td) => {
       return td.id === id;
     });
-    props.todoList[index].value = event.target.value;
-    props.setTooList([...props.todoList]);
+    td2[index] = { ...td2[index], value: event.target.value };
+    dispatcher(setTodoList([...td2]));
   });
 
   let classNameLi = useCallback(() => {
@@ -61,12 +68,7 @@ function TodoRendering(props) {
         handelDoubleClickInput(props.todo);
       }}
     >
-      <View
-        todo={props.todo}
-        todoList={props.todoList}
-        setTooList={props.setTooList}
-        checked={props.todo.isComplete}
-      />
+      <View todo={props.todo} checked={props.todo.isComplete} />
       <input
         class="edit"
         onChange={(e) => handelEditChange(e, props.todo.id)}

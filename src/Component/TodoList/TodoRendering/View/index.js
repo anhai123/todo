@@ -1,24 +1,30 @@
 import "./View.css";
 import { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setTodoList } from "../../../../feature/todoSlice";
 function View(props) {
+  const { todoList1 } = useSelector((state) => state.todo);
+  const dispatcher = useDispatch();
   const handleClickCheckbox = useCallback((ev, todo) => {
-    const index = props.todoList.findIndex((td) => {
+    const index = todoList1.findIndex((td) => {
       return td.id === todo.id;
     });
 
     if (ev.target.checked) {
-      props.todoList[index].isComplete = true;
-      props.setTooList([...props.todoList]);
+      const td2 = [...todoList1];
+      td2[index] = { ...td2[index], isComplete: true };
+      dispatcher(setTodoList([...td2]));
     } else {
-      props.todoList[index].isComplete = false;
-      props.setTooList([...props.todoList]);
+      const td2 = [...todoList1];
+      td2[index] = { ...td2[index], isComplete: false };
+      dispatcher(setTodoList([...td2]));
     }
   });
   const handleDestroyButton = useCallback((id) => {
-    const list = props.todoList.filter((todo) => {
+    const list = todoList1.filter((todo) => {
       return todo.id !== id;
     });
-    props.setTooList([...list]);
+    dispatcher(setTodoList([...list]));
   });
   return (
     <div class="view">
